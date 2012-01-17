@@ -48,12 +48,12 @@
 	CNRS/IRIT\\
 	F-31062 Toulouse Universit\'e Cedex, France\\
        Email: \{manzoor.ahmad,bruel\}@irit.fr}
-%\and
-%\IEEEauthorblockN{Authors Name/s per 2nd Affiliation (Author)}
-%\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
-%line 2: name of organization, acronyms acceptable\\
-%line 3: City, Country\\
-%line 4: Email: name@xyz.com}
+\and
+\IEEEauthorblockN{R\'egine Laleau and Christophe Gnao}
+\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
+line 2: name of organization, acronyms acceptable\\
+line 3: City, Country\\
+line 4: Email: name@xyz.com}
 }
 
 
@@ -64,12 +64,11 @@
 \begin{abstract}
 Dynamic Adaptive Systems (DAS) modify their behavior at run-time in response to 
 changing environmental conditions. For these systems, non-functional requirements play an 
-important role, and one has to identify requirements that are concerned with the adaptive 
-features.  Goal based approaches can help in the development of requirements for DAS, keeping in view the inherent uncertainty in these systems. \myrelax{}, which is a requirement engineering language, can introduce flexibility in 
+important role, and one has to identify requirements that are adaptable.  Goal based approaches can help in the development of requirements for DAS, keeping in view the inherent uncertainty in these systems. \myrelax{}, which is a requirement engineering language, can introduce flexibility in 
 non-functional requirements to adapt to any changing environmental conditions. 
 This paper shows how to model adaptive systems requirements through an existing goal 
 oriented approach that extends the \sysml{} meta-model and our proposed domain 
-specific language for \myrelax{}, that enables to derive requirements in graphical 
+specific language for \myrelax{}; that enables to derive requirements in graphical 
 format from textual requirements in the form of \sysml{} requirements diagrams. 
 Moreover, a merge of the two approaches will serve the development of DAS.
 \end{abstract}
@@ -96,11 +95,11 @@ Domain Specific Language; RELAX; Integrated Development Environment; Dynamic Ada
 \section{Introduction}
 %------------------------------------------------------
 
-Most of the work in Requirements Engineering (RE) for Dynamic Adaptive Systems (DAS) assume that requirements already exists and their main focus is on requirements monitoring and reasoning about the correctness of adaptations [1]. The environmental conditions for these systems tend to change so they have to adapt to these changing conditions.  In other words, we can say that DAS tend to be cyber-physical systems where the physical environment is tightly intertwined with the computing based system. 
+Most of the work in Requirements Engineering (RE) for Dynamic Adaptive Systems (DAS) assumes that requirements already exists and the main focus is on requirements monitoring and reasoning about the correctness of adaptations [1]. The environmental conditions for these systems tend to change so they have to adapt to these changing conditions.  In other words, we can say that DAS tend to be cyber-physical systems where the physical environment is tightly intertwined with the computing based system. 
 
-Goals can be used to systematically model the requirements of a DAS, they are treated as a collection of target systems with varying environmental conditions, so each target system's requirements are modeled and the adaptive logic that serves for the transition between the configurations are treated as separate concerns [2]. To develop goal models, a process can be used called LOREM ( Levels Of Requirement Engineering for Modeling) [3], to represent the individual target system and the adaptive logic. 
+Goals can be used to systematically model the requirements of a DAS. They are treated as a collection of target systems with varying environmental conditions, so each target system's requirements are modeled, and the adaptive logic that serves for transition between configurations are treated as separate concerns [2]. To develop goal models, a process can be used called LOREM ( Levels Of Requirement Engineering for Modeling) [3], to represent the individual target system and the adaptive logic. 
 
-Our previous work [4] with requirements serve as a baseline for using \myrelax{} [5] to model non-functional requirements. \myrelax{} is a textual programming language which deals with uncertainty in DAS requirements which allows requirements to be temporarily relaxed to adapt to changing environmental conditions. This relaxation is offered in case non-critical requirements be partially neglected in order to satisfy short term critical requirements. The distributed nature of DAS and changing environmental factors make it difficult to anticipate all the explicit states in which the system will be during its life time. As such a DAS needs to be able to tolerate a range of environmental conditions and contexts, but the exact nature of these contexts remains imperfectly understood. One overarching challenge in developing DAS, therefore, is how to handle the uncertainty posed by the respective application domains. 
+Our previous work [4] with requirements serve as a baseline for using \myrelax{} [5] to model non-functional requirements. \myrelax{} is a textual programming language which deals with uncertainty in DAS requirements that allows requirements to be temporarily relaxed to adapt to changing environmental conditions. This relaxation is offered in case non-critical requirements have to be partially neglected in order to satisfy short term critical requirements. The distributed nature of DAS and changing environmental factors makes it difficult to anticipate all the explicit states in which the system will be during its life time. As such a DAS needs to be able to tolerate a range of environmental conditions and contexts, but the exact nature of these contexts remains imperfectly understood. One overarching challenge in developing DAS, therefore, is how to handle uncertainty posed by the respective application domains. 
 
 We can take benefits from goal oriented approaches in defining requirements for self adaptive systems. The worth of goal oriented techniques for requirements engineering in general can be found in literature [6] [7]. 
 
@@ -148,7 +147,7 @@ The \myrelax{} vocabulary helps in relaxing requirements when environment change
 
 In \myrelax{} the conventional modal verb SHALL is retained and \myrelax{} operators are introduced to provide more flexibility in how and when that functionality may be delivered. More specifically, for requirements that are left partially unsatisfied, the introduction of an alternative, temporal or ordinal \myrelax{}-ation modifier will define the requirement as \myrelax{}-able. These operators define constraints on how a requirement can be relaxed at run-time. In addition, it is important to indicate what uncertainty factors warrant a relaxation of these requirements, thereby requiring adaptive behavior. This information is specified using the MON (monitor), ENV (environment), REL (relationship) and DEP (dependency) keywords.
 
-\sysml{} incorporates requirements through requirements diagram so a link between \sysml{} and \myrelax{} would help in modeling the requirements efficiently. \sysml{} provides a development environment and a graphical support for expressing all the variables of \myrelax{} and also it helps in bridging the gap between the requirements and the overall system model as it is becoming an industry standard.
+\sysml{} incorporates requirements through requirements diagram so a link between \sysml{} and \myrelax{} would help in modeling the requirements efficiently. \sysml{} provides a development environment and a graphical support for expressing all the variables of \myrelax{} and also it helps in bridging the gap between requirements and the overall system model as it is becoming an industry standard. This is why we have developed a DSL for \myrelax{}.
 
 %------------------------------------------------------
 \begin{figure}[!t]
@@ -214,21 +213,30 @@ As a more perspective contribution a tool, COOL \myrelax{} Editor [10] is develo
 \section{Our Contribution in Requirements Modeling}\label{sec:contrib}
 %------------------------------------------------------
 
-% Overall process starting from textual requirements to the generation of requirements diagrams, parametric diagrams on one hand and improvements frol KAOS positive/negative, direct/indirect impacts plus the correlation at the MM level.
+An excerpt of the AAL case study is given below: 
+Mary is a widow. She is 65 years old, overweight and has high blood pressure and cholesterol levels. Following her doctor's instructions, she is considering to lose weight. The doctor has recommended a hypo caloric diet with low levels of salt. She lives by herself in an AAL house.
 
 \subsection{The Overall Process}
 
 \Myfig{Workplan} shows the integrated work plan.
 
-An excerpt of the case study is given below: 
-Mary is a widow. She is 65 years old, overweight and has high blood pressure and cholesterol levels. Following her doctor's instructions, she is considering to lose weight. The doctor has recommended a hypo caloric diet with low levels of salt. She lives by herself in an AAL house.
+% Overall process starting from textual requirements to the generation of requirements diagrams, parametric diagrams on one hand and improvements frol KAOS positive/negative, direct/indirect impacts plus the correlation at the MM level.
 
+Based on the fact that goal oriented techniques can help in defining requirements for DAS, we give some propositions.
 
-For the correspondence between requirement and goal, we know that a \stereotype{Block} satisfy \stereotype{Requirement} and an \stereotype{Agent} satisfy \stereotype{Goal}, so we can deduce a hypothesis from this correlation that a \stereotype{Requirement} corresponds to a \stereotype{Goal} and a \stereotype{Block} corresponds to an \stereotype{Agent}. This hypothesis can be verified by the work of Chung [15] and Cysneiros [16] which shows that non functional requirements can be formulated in the form of goals. 
+\subsubsection{Proposition 1}
 
-Based on our experience with the AAL case study, we can deduce that requirement corresponds to goal. \Myfig{ReqDiag} shows the SysML requirement diagram. Here the main requirement is to keep mary healthy; this requirement is composed of two requirements i.e. \stereotype{Minimum liquid intake} which is satisfied by the block \stereotype{Sensor enabled cups} and \stereotype{Hypo caloric diet} which is satisfied by the block \stereotype{Fridge display}. \Myfig{KAOSModel} shows the \kaos{} responsibility model: here the main goal is to look after the mary diet plan which is decomposed into two sub goals. The first sub goal is the \stereotype{Minimum liquid intake} which is achieved by the agent \stereotype{Sensor enabled cups} and the other sub goal is \stereotype{Hypo caloric diet} which is achieved by the agent \stereotype{Fridge display}.  
+To merge the two approaches, we start by finding the correspondence between requirement and goal. We know that a \stereotype{Block} satisfy \stereotype{Requirement} and an \stereotype{Agent} satisfy \stereotype{Goal}, so we can deduce a hypothesis from this correlation that a \stereotype{Requirement} corresponds to a \stereotype{Goal} and a \stereotype{Block} corresponds to an \stereotype{Agent}. This hypothesis can be verified by the work in [15] and [16] which shows that non functional requirements can be formulated in the form of goals. 
+
+Based on our experience with the AAL case study, we can prove this correspondence. \Myfig{ReqDiag} shows the SysML requirement diagram. Here the main requirement is to keep mary healthy; this requirement is composed of two requirements i.e. \stereotype{Minimum liquid intake} which is satisfied by the block \stereotype{Sensor enabled cups} and \stereotype{Hypo caloric diet} which is satisfied by the block \stereotype{Fridge display}. \Myfig{KAOSModel} shows the \kaos{} responsibility model: here the main goal is to look after the mary diet plan which is decomposed into two sub goals. The first sub goal is the \stereotype{Minimum liquid intake} which is achieved by the agent \stereotype{Sensor enabled cups} and the other sub goal is \stereotype{Hypo caloric diet} which is achieved by the agent \stereotype{Fridge display}.  
+
+\subsubsection{Proposition 2}
 
 Uncertainty factors especially ENV and MON attributes are particularly important for documenting whether the system has the means for monitoring the important aspects of the environment. By collecting these ENV and MON attributes, we can build up a model of the environment in which the system will operate, as well as a model of how the system monitor its environment. Having said this, \sysml{}/\kaos{} can complement \myrelax{} by injekting more information in the form of positive/negative and direct/indirect impacts. 
+
+\subsubsection{Proposition 3}
+
+
 
 %------------------------------------------------------
 \begin{figure}[!t]
